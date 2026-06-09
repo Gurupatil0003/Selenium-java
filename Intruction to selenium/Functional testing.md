@@ -1,3 +1,6 @@
+<img width="1200" height="624" alt="image" src="https://github.com/user-attachments/assets/dc5ee46f-b816-4628-a88a-1415462a356c" />
+
+
 # Functional Testing Types (Java Examples)
 
 Functional Testing checks whether the software features work as expected.
