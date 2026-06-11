@@ -104,3 +104,7 @@ Production
 - I → Integration
 - S → System
 - A → Acceptance
+
+
+Blog
+https://medium.com/p/2fa2ae225886/edit
