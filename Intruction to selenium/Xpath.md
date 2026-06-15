@@ -307,3 +307,6 @@ driver.find_element(By.XPATH, "//input[@placeholder='Username']")
 ## Conclusion
 
 XPath makes Selenium scripts more reliable when web elements have dynamic attributes.
+
+## Justification
+XPath is needed in Selenium because web applications are dynamic. Attributes such as IDs, names, and classes may change after every deployment. XPath provides flexible ways to locate elements using partial attributes, text, and relationships between elements, making test scripts more reliable and maintainable.
