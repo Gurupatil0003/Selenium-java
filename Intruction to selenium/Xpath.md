@@ -264,3 +264,46 @@ Example:
 | Which function is used for partial matching? | `contains()` |
 | Which axis finds next sibling? | `following-sibling::` |
 | Which function returns last element? | `last()` |
+
+
+# Why Do We Need XPath in Selenium?
+
+XPath is used to locate web elements when attributes like `id`, `name`, or `class` are missing or change dynamically.
+
+## Example
+
+### HTML Today
+
+```html
+<input id="user_1234" placeholder="Username">
+```
+
+Selenium code using ID:
+
+```python
+driver.find_element(By.ID, "user_1234")
+```
+
+### HTML After Deployment
+
+```html
+<input id="user_5678" placeholder="Username">
+```
+
+The above code will fail because the `id` has changed.
+
+## Using XPath
+
+```python
+driver.find_element(By.XPATH, "//input[@placeholder='Username']")
+```
+
+### Why does this work?
+
+- The `id` may change every time the application is deployed.
+- The `placeholder` value remains the same.
+- XPath helps us locate elements using stable attributes, text, and relationships.
+
+## Conclusion
+
+XPath makes Selenium scripts more reliable when web elements have dynamic attributes.
