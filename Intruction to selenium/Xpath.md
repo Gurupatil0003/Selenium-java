@@ -1,0 +1,266 @@
+# XPath Notes
+
+---
+
+# What is XPath?
+
+XPath (XML Path Language) is used to locate elements in XML and HTML documents.
+
+| Feature | Description |
+|-----------|-------------|
+| Full Form | XML Path Language |
+| Used For | Locating elements in XML and HTML |
+| Commonly Used In | Selenium, Web Scraping, XML Processing |
+| Supports | Attributes, Text, Axes, Functions |
+
+---
+
+# Types of XPath
+
+| Type | Syntax | Example |
+|--------|---------|---------|
+| Absolute XPath | Starts from root | `/html/body/div/input` |
+| Relative XPath | Starts anywhere | `//input` |
+
+### Comparison
+
+| Absolute XPath | Relative XPath |
+|---------------|---------------|
+| Starts from root node | Starts from anywhere |
+| Long and complex | Short and readable |
+| Easily breaks | More stable |
+| Not recommended | Highly recommended |
+
+---
+
+# Basic Syntax
+
+| Expression | Meaning |
+|------------|---------|
+| `//tagname` | Select all elements with that tag |
+| `/` | Direct child |
+| `//` | Descendant |
+| `.` | Current node |
+| `..` | Parent node |
+
+### Examples
+
+| XPath | Selects |
+|---------|---------|
+| `//input` | All input elements |
+| `//button` | All buttons |
+| `//a` | All anchor tags |
+
+---
+
+# XPath by Attribute
+
+## Single Attribute
+
+```xpath
+//input[@id='username']
+```
+
+## Multiple Attributes
+
+```xpath
+//input[@id='username' and @type='text']
+```
+
+### Table
+
+| XPath | Description |
+|---------|------------|
+| `//input[@id='email']` | Find by ID |
+| `//input[@name='username']` | Find by name |
+| `//button[@type='submit']` | Find submit button |
+| `//a[@href='/home']` | Find link |
+
+---
+
+# XPath by Text
+
+| XPath | Description |
+|---------|------------|
+| `//button[text()='Login']` | Exact text match |
+| `//a[text()='Register']` | Exact text match |
+
+Example:
+
+```xpath
+//button[text()='Login']
+```
+
+---
+
+# contains()
+
+### Attribute Contains
+
+```xpath
+//input[contains(@class,'form-control')]
+```
+
+### Text Contains
+
+```xpath
+//button[contains(text(),'Login')]
+```
+
+| XPath | Meaning |
+|--------|--------|
+| `contains(@id,'user')` | Partial ID match |
+| `contains(@class,'btn')` | Partial class match |
+| `contains(text(),'Login')` | Partial text match |
+
+---
+
+# starts-with()
+
+```xpath
+//input[starts-with(@id,'user')]
+```
+
+| XPath | Result |
+|--------|--------|
+| `starts-with(@id,'user')` | ID begins with user |
+| `starts-with(@name,'emp')` | Name begins with emp |
+
+---
+
+# Logical Operators
+
+| Operator | Example |
+|-----------|--------|
+| AND | `//input[@type='text' and @name='username']` |
+| OR | `//input[@type='email' or @type='text']` |
+| NOT | `//input[not(@disabled)]` |
+
+---
+
+# Indexing
+
+| XPath | Meaning |
+|--------|--------|
+| `(//input)[1]` | First input |
+| `(//input)[2]` | Second input |
+| `(//input)[last()]` | Last input |
+| `(//li)[position()=3]` | Third list item |
+
+---
+
+# Wildcards
+
+| XPath | Description |
+|--------|------------|
+| `//*` | Any element |
+| `//*[@id='submit']` | Any tag with ID |
+| `//input[@*]` | Input with any attribute |
+
+---
+
+# XPath Axes
+
+## Parent Axis
+
+```xpath
+//input[@id='email']/parent::div
+```
+
+## Child Axis
+
+```xpath
+//div/child::input
+```
+
+## Following Sibling
+
+```xpath
+//label/following-sibling::input
+```
+
+## Preceding Sibling
+
+```xpath
+//input/preceding-sibling::label
+```
+
+## Ancestor
+
+```xpath
+//input/ancestor::form
+```
+
+## Descendant
+
+```xpath
+//form/descendant::input
+```
+
+### Axes Summary
+
+| Axis | Purpose |
+|--------|--------|
+| `parent::` | Parent node |
+| `child::` | Child node |
+| `ancestor::` | All ancestors |
+| `descendant::` | All descendants |
+| `following-sibling::` | Next siblings |
+| `preceding-sibling::` | Previous siblings |
+
+---
+
+# XPath Functions
+
+| Function | Example | Purpose |
+|-----------|---------|---------|
+| contains() | `contains(@class,'btn')` | Partial match |
+| starts-with() | `starts-with(@id,'emp')` | Starts with value |
+| last() | `(//li)[last()]` | Last element |
+| position() | `(//li)[position()=3]` | Specific position |
+| text() | `//button[text()='Login']` | Match exact text |
+
+---
+
+# Common Selenium Examples
+
+| Element | XPath |
+|----------|-------|
+| Username Textbox | `//input[@name='username']` |
+| Password Textbox | `//input[@type='password']` |
+| Login Button | `//button[text()='Login']` |
+| Checkbox | `//input[@type='checkbox']` |
+| Radio Button | `//input[@type='radio']` |
+| Dropdown | `//select[@id='country']` |
+| Hyperlink | `//a[text()='Home']` |
+
+---
+
+# Quick Cheat Sheet
+
+| Requirement | XPath |
+|-------------|-------|
+| By ID | `//*[@id='value']` |
+| By Class | `//*[@class='value']` |
+| By Name | `//*[@name='value']` |
+| By Text | `//*[text()='Text']` |
+| Contains Text | `//*[contains(text(),'Text')]` |
+| Starts With | `//*[starts-with(@id,'emp')]` |
+| Parent | `parent::` |
+| Child | `child::` |
+| Ancestor | `ancestor::` |
+| Descendant | `descendant::` |
+| Following Sibling | `following-sibling::` |
+| Preceding Sibling | `preceding-sibling::` |
+
+---
+
+# Interview Questions
+
+| Question | Answer |
+|-----------|--------|
+| What are the types of XPath? | Absolute and Relative XPath |
+| Which XPath is preferred? | Relative XPath |
+| Which function is used for partial matching? | `contains()` |
+| Which axis finds next sibling? | `following-sibling::` |
+| Which function returns last element? | `last()` |
