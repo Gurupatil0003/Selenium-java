@@ -1,3 +1,4 @@
+```python
                               TEST CASE DESIGN
                                       │
                                       │
@@ -128,3 +129,4 @@
                                       │ Log bugs and track  │
                                       │ them until closure. │
                                       └─────────────────────┘
+```
