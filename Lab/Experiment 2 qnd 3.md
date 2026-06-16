@@ -1,33 +1,34 @@
 ```python
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
-public class hello {
+public class gg {
 
     public static void main(String[] args) throws InterruptedException {
 
         // Launch Browser
         WebDriver driver = new ChromeDriver();
-
         driver.manage().window().maximize();
 
         // Open Website
         driver.get("https://demoqa.com/automation-practice-form");
 
-        // Text Boxes
+        // First Name
         driver.findElement(By.id("firstName"))
                 .sendKeys("Mounesh");
 
+        // Last Name
         driver.findElement(By.id("lastName"))
                 .sendKeys("Goud");
 
+        // Email
         driver.findElement(By.id("userEmail"))
                 .sendKeys("mounesh@gmail.com");
 
-        // Radio Button
+        // Gender
         driver.findElement(By.xpath("//label[text()='Male']"))
                 .click();
 
@@ -35,30 +36,27 @@ public class hello {
         driver.findElement(By.id("userNumber"))
                 .sendKeys("9876543210");
 
-        // Checkbox
+        // Hobbies
         driver.findElement(By.xpath("//label[text()='Sports']"))
                 .click();
 
-        // Text Area
-        driver.findElement(By.id("currentAddress"))
-                .sendKeys("Bangalore, Karnataka");
-
-        // Upload File
+        // Upload Picture
         driver.findElement(By.id("uploadPicture"))
                 .sendKeys("C:\\Users\\LENOVO\\IdeaProjects\\simpe\\screenshots\\g.jpeg");
 
-        System.out.println("File Uploaded");
+        // Address
+        driver.findElement(By.id("currentAddress"))
+                .sendKeys("Bangalore, Karnataka");
 
-        // Submit Button
-        WebElement submitBtn = driver.findElement(By.id("submit"));
-
+        // Simple Scroll Down
         ((JavascriptExecutor) driver)
-                .executeScript("arguments[0].scrollIntoView(true);", submitBtn);
+                .executeScript("window.scrollBy(0,500)");
 
         Thread.sleep(1000);
 
-        ((JavascriptExecutor) driver)
-                .executeScript("arguments[0].click();", submitBtn);
+        // Submit
+        driver.findElement(By.id("submit"))
+                .click();
 
         System.out.println("Form Submitted Successfully");
 
@@ -68,5 +66,4 @@ public class hello {
         driver.quit();
     }
 }
-
 ```
