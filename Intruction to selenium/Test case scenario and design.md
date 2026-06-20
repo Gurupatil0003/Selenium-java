@@ -131,3 +131,107 @@
                                       │ them until closure. │
                                       └─────────────────────┘
 ```
+
+## Test Design 
+```python
+
+                             TEST CASE DESIGN
+                                     │
+                                     ▼
+               "Convert scenarios into executable test cases"
+                                     │
+                                     ▼
+                        INPUT : TEST SCENARIOS
+                                     │
+                                     ▼
+                         TEST CASE CONSTRUCTION
+            ┌─────────────────────────────────────────────┐
+            │ Detailed validation of scenarios.           │
+            └─────────────────────────────────────────────┘
+                                     │
+                      Each Test Case Contains
+            ┌─────────────────────────────────────────────┐
+            │ • Preconditions                            │
+            │ • Test Steps                               │
+            │ • Test Data                                │
+            │ • Expected Result                          │
+            └─────────────────────────────────────────────┘
+                                     │
+              ┌──────────────────────┴──────────────────────┐
+              │                                             │
+              ▼                                             ▼
+
+      POSITIVE TEST CASES                          NEGATIVE TEST CASES
+
+      Verify valid inputs                          Verify invalid inputs
+
+      Correct login                                Wrong password
+      Successful payment                           Expired card
+      Product available                            Invalid coupon
+                                     │
+                                     ▼
+                          TEST DESIGN TECHNIQUES
+          ┌─────────────────────────────────────────────────┐
+          │ Maximize coverage and reduce redundant cases.   │
+          └─────────────────────────────────────────────────┘
+                                     │
+      ┌──────────────────────────────┼──────────────────────────────┐
+      │                              │                              │
+      ▼                              ▼                              ▼
+
+ Boundary Value             Equivalence Partition             Decision Table
+
+ Test boundaries            Valid and invalid groups          Condition combinations
+
+ Password 7 chars           Age 18-60 valid                  Login Matrix
+ Password 8 chars           Age <18 invalid                  Username/Password
+ Password 9 chars           Age >60 invalid                  Valid/Invalid
+                                     │
+                                     ▼
+                         TEST CASE PRIORITIZATION
+            ┌─────────────────────────────────────────────┐
+            │ Execute important test cases first.         │
+            └─────────────────────────────────────────────┘
+                                     │
+         ┌───────────────────────────┼───────────────────────────┐
+         │                           │                           │
+         ▼                           ▼                           ▼
+
+      P1 - Critical              P2 - High               P3/P4 - Medium
+
+      Payment                    Registration            Reviews
+      Checkout                   Coupons                 Theme
+      Order Placement            Forgot Password         Language
+                                     │
+                                     ▼
+                         TEST CASE OPTIMIZATION
+            ┌─────────────────────────────────────────────┐
+            │ Goal: Achieve maximum coverage with minimum │
+            │ number of test cases.                       │
+            └─────────────────────────────────────────────┘
+                                     │
+                                     ▼
+                      Remove Duplicate Test Cases
+                                     │
+                                     ▼
+                           Increase Efficiency
+                                     │
+                                     ▼
+                            TEST EXECUTION
+                                     │
+                                     ▼
+                       Compare Actual vs Expected
+                                     │
+                    ┌────────────────┴────────────────┐
+                    │                                 │
+                    ▼                                 ▼
+
+                  PASS                              FAIL
+                                                       │
+                                                       ▼
+                                              DEFECT REPORTING
+                                     │
+                                     ▼
+                                     END
+
+```
