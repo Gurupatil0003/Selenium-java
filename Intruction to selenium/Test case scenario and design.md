@@ -235,3 +235,217 @@
                                      END
 
 ```
+
+# PART 1: TEST SCENARIO DESIGN
+
+```python
+                            TEST SCENARIO DESIGN
+                                      │
+                                      ▼
+               "Identifying what functionalities need
+                       to be validated."
+                                      │
+                                      ▼
+                         REQUIREMENT ANALYSIS
+                  ┌─────────────────────────────────────┐
+                  │ Purpose: Understand what needs to   │
+                  │ be tested and why it should work.   │
+                  │ Identify requirements and expected  │
+                  │ behavior.                           │
+                  └─────────────────────────────────────┘
+                                      │
+                                      ▼
+                       SCENARIO IDENTIFICATION
+                  ┌─────────────────────────────────────┐
+                  │ Purpose: Break requirements into    │
+                  │ high-level functionalities that     │
+                  │ need validation.                    │
+                  └─────────────────────────────────────┘
+                                      │
+          ┌───────────────────────────┼───────────────────────────┐
+          │                           │                           │
+          ▼                           ▼                           ▼
+
+ FUNCTIONAL SCENARIOS         NON-FUNCTIONAL             BUSINESS CRITICAL
+                                  SCENARIOS                 SCENARIOS
+
+"What system does?"          "How system behaves?"      "What impacts business?"
+
+Examples:                    Examples:                  Examples:
+Login                        Performance                Payment
+Search                       Security                   Checkout
+Add to Cart                  Scalability                Order Placement
+Payment                      Compatibility              Order Confirmation
+Registration                 Usability                  Refund Processing
+
+Purpose:                     Purpose:                   Purpose:
+Validate features.           Validate quality           Protect revenue-
+                             attributes.                impacting flows.
+
+
+
+```
+
+# PART 2: TEST CASE DESIGN
+
+```python
+                              TEST CASE DESIGN
+                                      │
+                                      ▼
+                "Converting scenarios into executable
+                       and optimized test cases."
+                                      │
+                                      ▼
+                            TEST CASE DESIGN
+                  ┌─────────────────────────────────────┐
+                  │ Purpose: Convert scenarios into     │
+                  │ detailed and executable tests.      │
+                  │                                     │
+                  │ Each test case contains:            │
+                  │ - Test Case ID                      │
+                  │ - Pre-Requisites                    │
+                  │ - Test Steps                        │
+                  │ - Test Data                         │
+                  │ - Expected Result                   │
+                  │ - Actual Result                     │
+                  │ - Status                            │
+                  └─────────────────────────────────────┘
+                                      │
+                  ┌───────────────────┴───────────────────┐
+                  │                                       │
+                  ▼                                       ▼
+
+         POSITIVE TEST CASES                    NEGATIVE TEST CASES
+
+ "Verify valid inputs."                    "Verify invalid inputs."
+
+ Examples:                                 Examples:
+ Correct username/password                 Wrong password
+ Successful payment                        Expired card
+ Product available                         Invalid coupon
+
+ Purpose:                                  Purpose:
+ Ensure expected behavior.                 Ensure proper error handling.
+
+                  │                                       │
+                  └───────────────────┬───────────────────┘
+                                      │
+                                      ▼
+
+                          TEST DESIGN TECHNIQUES
+         ┌──────────────────────────────────────────────────────┐
+         │ Purpose: Achieve maximum coverage with minimum       │
+         │ number of test cases.                                │
+         └──────────────────────────────────────────────────────┘
+                                      │
+
+ ┌────────────────┬────────────────┬────────────────┬────────────────┬────────────────┐
+ │                │                │                │                │
+ ▼                ▼                ▼                ▼                ▼
+
+Boundary Value  Equivalence      Decision Table   State Transition   Error Guessing
+Analysis        Partitioning
+
+Purpose:        Purpose:         Purpose:         Purpose:           Purpose:
+Test limits.    Group similar    Validate         Verify state       Find hidden bugs
+                inputs to avoid  combinations     changes.           using experience.
+                redundancy.      of conditions.
+
+Examples:       Examples:        Examples:        Examples:          Examples:
+7 chars         Age 18-60 valid  Login Matrix     Account Active     Blank fields
+8 chars         Age <18 invalid  Username/Pass    ↓                  Browser refresh
+9 chars         Age >60 invalid                   3 wrong attempts   Special chars
+                                                  ↓
+                                                  Account Locked
+
+                                      │
+                                      ▼
+                         TEST CASE PRIORITIZATION
+                  ┌──────────────────────────────────────┐
+                  │ Purpose: Execute important cases     │
+                  │ first when time is limited.          │
+                  └──────────────────────────────────────┘
+                                      │
+
+          P1 - Critical          P2 - High          P3/P4 - Medium/Low
+
+          Payment                Registration       Reviews
+          Checkout               Coupons            Theme
+          Order Placement        Forgot Password    Language
+
+                                      │
+                                      ▼
+                           TEST CASE OPTIMIZATION
+                  ┌──────────────────────────────────────┐
+                  │ Purpose: Remove redundant test cases │
+                  │ while maintaining maximum coverage.  │
+                  └──────────────────────────────────────┘
+                                      │
+                                      ▼
+
+                       Remove Duplicate Test Cases
+                                      │
+                                      ▼
+
+                          Improve Reusability
+                                      │
+                                      ▼
+
+                           Increase Efficiency
+                                      │
+                                      ▼
+
+                             TEST EXECUTION PHASE
+                                      │
+                                      ▼
+
+                        Compare Actual vs Expected
+
+                                      │
+                    ┌─────────────────┴─────────────────┐
+                    │                                   │
+                    ▼                                   ▼
+
+                  PASS                                FAIL
+                    │                                   │
+                    ▼                                   ▼
+
+             Mark as Passed                    DEFECT REPORTING
+                                      ┌────────────────────────┐
+                                      │ Log bugs and track     │
+                                      │ them until closure.    │
+                                      │                        │
+                                      │ Include:               │
+                                      │ - Severity             │
+                                      │ - Priority             │
+                                      │ - Reproduction Steps   │
+                                      │ - Screenshots          │
+                                      └────────────────────────┘
+                                                       │
+                                                       ▼
+
+                                             RETESTING PHASE
+
+                                      Purpose:
+                                      Verify defect fixes.
+
+                                                       │
+                                                       ▼
+
+                                           REGRESSION TESTING
+
+                                      Purpose:
+                                      Ensure new fixes don't
+                                      break existing features.
+
+                                                       │
+                                                       ▼
+
+                                               DEFECT CLOSURE
+
+                                      Purpose:
+                                      Confirm resolution and
+                                      close the defect.
+
+
+```
