@@ -1,5 +1,42 @@
 # Hosting a Simple Web Page in Ubuntu VM (NAT Network Demo)
 
+
+```python
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class AddButtonTest {
+
+    @Test
+    public void verifyButtonCreation() {
+
+        WebDriver driver = new ChromeDriver();
+
+        driver.manage().window().maximize();
+
+        driver.get("https://the-internet.herokuapp.com/add_remove_elements/");
+
+        // Click Add Element button
+        driver.findElement(By.xpath("//button[text()='Add Element']"))
+                .click();
+
+        // Verify Delete button appears
+        boolean isDisplayed =
+                driver.findElement(By.xpath("//button[text()='Delete']"))
+                        .isDisplayed();
+
+        Assert.assertTrue(isDisplayed);
+
+        System.out.println("Delete button displayed successfully");
+
+        driver.quit();
+    }
+}
+
+```
 ## Step 1: Start Ubuntu
 
 Open Terminal and install Python (if not already installed):
