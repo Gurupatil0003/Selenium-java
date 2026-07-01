@@ -113,3 +113,57 @@ http://10.0.2.15:8000
 Most Likely Result
 ❌ It won't open.
 ```
+
+```python
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+public class TestLogging {
+
+    private static final Logger logger = LogManager.getLogger(TestLogging.class);
+
+    public static void main(String[] args) {
+        logger.info("Application started.");
+        logger.debug("Debug message.");
+        logger.warn("Warning message.");
+        logger.error("Error message.");
+        logger.fatal("Fatal message.");
+    }
+}
+
+
+```
+
+```python
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class SeleniumWebsiteAutomation {
+
+    private static final Logger logger = LogManager.getLogger(SeleniumWebsiteAutomation.class);
+
+    public static void main(String[] args) {
+
+        logger.trace("Automation started.");
+        logger.debug("Launching Chrome browser.");
+
+        WebDriver driver = new ChromeDriver();
+
+        logger.info("Opening Selenium website.");
+        driver.get("https://www.selenium.dev");
+
+        logger.info("Clicking Downloads menu.");
+        driver.findElement(By.linkText("Downloads")).click();
+
+        logger.info("Page Title: " + driver.getTitle());
+
+        driver.quit();
+
+        logger.info("Browser closed.");
+    }
+}
+
+```
