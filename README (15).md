@@ -178,3 +178,43 @@ AWS S3
       ↓
 Public URL
 ```
+
+```python
+from flask import Flask, request,render_template
+
+import boto3
+
+app = Flask(__name__)
+
+# AWS S3
+s3 = boto3.client(
+    "s3",
+    aws_access_key_id="",
+    aws_secret_access_key="",
+    region_name="us-west-2"
+)
+
+BUCKET = "dddd-ddd"
+
+
+@app.route("/")
+def home():
+    return render_template("inde.html")
+
+
+@app.route("/upload", methods=["POST"])
+def upload():
+    file = request.files["file"]
+
+    s3.upload_fileobj(
+        file,          # uploaded file
+        BUCKET,        # bucket name
+        file.filename  # file name in S3
+    )
+
+    return f"{file.filename} uploaded successfully!"
+
+
+app.run(debug=True)
+
+```
