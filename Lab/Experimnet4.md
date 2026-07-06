@@ -139,3 +139,54 @@ public class SauceDemoAutomation {
 }
 
 ```
+
+```python
+import com.aventstack.extentreports.*;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+
+public class gg {
+    public static void main(String[] args) throws Exception {
+
+        new File("reports").mkdir();  // Create reports folder
+
+        ExtentReports extent = new ExtentReports();
+        extent.attachReporter(new ExtentSparkReporter("reports/report.html"));
+        ExtentTest test = extent.createTest("Google Test");
+
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://www.amazon.com");
+
+        Thread.sleep(2000);
+
+        File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        Files.copy(src.toPath(),
+                new File("reports/google.png").toPath(),
+                StandardCopyOption.REPLACE_EXISTING);
+
+        test.pass("Screenshot attached")
+                .addScreenCaptureFromPath("google.png");
+
+        driver.quit();
+        extent.flush();
+
+        System.out.println("Report created in reports folder");
+    }
+}
+
+
+```
+
+```python
+ <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.16.1</version>
+        </dependency>
+
+```
