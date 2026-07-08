@@ -286,3 +286,112 @@ public class OrangeHRMReport {
 }
 
 ```
+
+```python
+import com.aventstack.extentreports.*;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.time.Duration;
+
+public class gg {
+
+    static ExtentTest test;
+    static WebDriverWait wait;
+
+    public static void main(String[] args) throws Exception {
+
+        // Reports Folder
+        new File("reports").mkdir();
+
+        // Extent Report
+        ExtentReports extent = new ExtentReports();
+        extent.attachReporter(new ExtentSparkReporter("reports/report.html"));
+        test = extent.createTest("OrangeHRM Automation");
+
+        // Launch Browser
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        // Open Website
+        driver.get("https://opensource-demo.orangehrmlive.com/");
+        find(By.name("username"));
+        test.pass("Website Opened");
+        capture(driver, "01_Home");
+
+        // Login
+        find(By.name("username")).sendKeys("Admin");
+        find(By.name("password")).sendKeys("admin123");
+        click(By.cssSelector("button[type='submit']"));
+
+        find(By.xpath("//h6[text()='Dashboard']"));
+        test.pass("Login Successful");
+        capture(driver, "02_Dashboard");
+
+        // Open PIM
+        click(By.xpath("//span[text()='PIM']"));
+        find(By.xpath("//h6[text()='PIM']"));
+        test.pass("PIM Opened");
+        capture(driver, "03_PIM");
+
+        // Open Admin
+        click(By.xpath("//span[text()='Admin']"));
+        find(By.xpath("//h6[text()='Admin']"));
+        test.pass("Admin Opened");
+        capture(driver, "04_Admin");
+
+        // User Menu
+        click(By.className("oxd-userdropdown-name"));
+        test.pass("User Menu Opened");
+        capture(driver, "05_UserMenu");
+
+        // Logout
+        click(By.linkText("Logout"));
+        find(By.name("username"));
+        test.pass("Logout Successful");
+        capture(driver, "06_Logout");
+
+        // Close Browser
+        driver.quit();
+
+        // Save Report
+        extent.flush();
+
+        System.out.println("Automation Completed!");
+        System.out.println("Open reports/report.html");
+    }
+
+    // Wait for element and return it
+    public static WebElement find(By by) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+    }
+
+    // Wait and click
+    public static void click(By by) {
+        wait.until(ExpectedConditions.elementToBeClickable(by)).click();
+    }
+
+    // Screenshot
+    public static void capture(WebDriver driver, String name) throws Exception {
+
+        File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+        File dest = new File("reports/" + name + ".png");
+
+        Files.copy(src.toPath(), dest.toPath(),
+                StandardCopyOption.REPLACE_EXISTING);
+
+        test.addScreenCaptureFromPath(name + ".png");
+    }
+}
+
+
+```
