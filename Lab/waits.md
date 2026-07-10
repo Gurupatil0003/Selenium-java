@@ -1,3 +1,4 @@
+## Implit and Explit wait
 ```python
 import java.time.Duration;
 import org.openqa.selenium.*;
@@ -60,5 +61,53 @@ public class ImplicitWaitDemo {
         driver.quit();
     }
 }
+
+```
+
+## Alert
+```python
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class g {
+
+    public static void main(String[] args) throws Exception{
+
+        WebDriver driver = new ChromeDriver();
+
+        driver.manage().window().maximize();
+        driver.get("https://the-internet.herokuapp.com/javascript_alerts");
+
+        // Simple Alert
+        driver.findElement(By.xpath("//button[text()='Click for JS Alert']")).click();
+        Thread.sleep(2000);
+        driver.switchTo().alert().accept();
+        Thread.sleep(2000);
+
+
+
+        // Confirmation Alert
+        driver.findElement(By.xpath("//button[text()='Click for JS Confirm']")).click();
+        Thread.sleep(2000);
+
+        driver.switchTo().alert().dismiss();
+        Thread.sleep(2000);
+
+        // Prompt Alert
+        driver.findElement(By.xpath("//button[text()='Click for JS Prompt']")).click();
+        Thread.sleep(2000);
+
+        Alert alert = driver.switchTo().alert();
+        Thread.sleep(2000);
+
+        alert.sendKeys("Hello");
+        Thread.sleep(2000);
+
+        alert.accept();
+
+        driver.quit();
+    }
+}
+
 
 ```
