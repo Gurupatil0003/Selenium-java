@@ -111,3 +111,45 @@ public class g {
 
 
 ```
+
+```python
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class g {
+
+    public static void main(String[] args) throws Exception {
+
+        WebDriver driver = new ChromeDriver();
+
+        driver.manage().window().maximize();
+
+        driver.get("https://demo.automationtesting.in/Frames.html");
+
+        // Locate the iframe
+        WebElement frame = driver.findElement(By.id("singleframe"));
+
+        // Switch to iframe
+        driver.switchTo().frame(frame);
+
+        // Type inside the textbox
+        driver.findElement(By.xpath("//input[@type='text']"))
+                .sendKeys("Hello Selenium");
+
+        Thread.sleep(3000);
+
+        // Back to main page
+        driver.switchTo().defaultContent();
+
+        System.out.println(driver.getTitle());
+
+        Thread.sleep(2000);
+
+        driver.quit();
+    }
+}
+
+
+```
