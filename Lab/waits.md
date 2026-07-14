@@ -281,3 +281,52 @@ public class hello {
     }
 }
 ```
+
+```python
+docker --version
+docker info
+docker pull eclipse-temurin:21-jdk
+docker images
+docker build -t java-demo .
+docker run java-demo
+docker run -it ubuntu
+docker ps
+docker ps -a
+docker stop <container_id>
+docker start <container_id>
+docker restart <container_id>
+docker rm <container_id>
+docker rmi <image_name>
+docker logs <container_id>
+docker exec -it <container_id> bash
+docker network ls
+docker volume ls
+docker inspect <container_id>
+docker history <image_name>
+docker stats
+docker system prune -a
+
+
+```
+
+
+
+```python
+FROM eclipse-temurin:21-jdk
+
+WORKDIR /app
+
+COPY src/main/java/gg.java .
+
+RUN javac gg.java
+
+CMD ["java", "gg"]
+
+
+```
+
+
+```python
+
+
+```
