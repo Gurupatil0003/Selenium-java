@@ -77,3 +77,85 @@ IAM User (guru)
       v
 Amazon S3
 ```
+
+
+```python
+
+# Build image
+docker build -t flask-demo .
+
+# Create container
+docker run -d -p 5000:5000 --name flask-container flask-demo
+
+# Check
+docker ps
+
+# Stop
+docker stop flask-container
+
+# Remove container
+docker rm flask-container
+
+# Remove image
+docker rmi flask-demo
+
+```
+
+```python
+# app/main.py
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+ return 'Hello, World!'
+if __name__ == '__main__':
+ app.run(host='0.0.0.0', port=5000)
+
+
+```
+
+```python
+Flask==2.2.5
+Werkzeug==2.2.3
+
+```
+
+```python
+#FROM eclipse-temurin:21-jdk
+#
+#WORKDIR app/
+#
+#COPY /src/main/java/gg.java .
+#
+#RUN javac gg.java
+#
+#CMD ["java","gg"]
+#
+#
+#
+
+# Python base image
+FROM python:3.9-slim
+
+# Working directory inside container
+WORKDIR /app
+
+# Copy requirements
+COPY src/main/java/requirements.txt .
+
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application code
+COPY src/main/java/ .
+
+# Run application
+CMD ["python", "app.py"]
+
+
+
+```
+
+```python
