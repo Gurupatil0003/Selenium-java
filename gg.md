@@ -172,3 +172,26 @@ if __name__ == '__main__':
  app.run(host='0.0.0.0', port=5000)
 
 ```
+
+
+```python
+
+# Build image
+docker build -t flask-demo .
+
+# Create container
+docker run -d -p 5000:5000 --name flask-container flask-demo
+
+# Check
+docker ps
+
+# Stop
+docker stop flask-container
+
+# Remove container
+docker rm flask-container
+
+# Remove image
+docker rmi flask-demo
+
+```
