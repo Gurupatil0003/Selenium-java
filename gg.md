@@ -220,4 +220,6 @@ docker network rm mynetwork
 
 
 
+apt update
+apt install -y iputils-ping
 ```
