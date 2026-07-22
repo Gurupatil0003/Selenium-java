@@ -195,3 +195,29 @@ docker rm flask-container
 docker rmi flask-demo
 
 ```
+
+
+```python
+docker network create mynetwork
+
+docker run -dit --name container1 --network mynetwork ubuntu
+
+docker run -dit --name container2 --network mynetwork ubuntu
+
+docker exec -it container1 bash
+
+ping container2
+
+exit
+
+docker network inspect mynetwork
+
+docker network ls
+
+docker rm -f container1 container2
+
+docker network rm mynetwork
+
+
+
+```
