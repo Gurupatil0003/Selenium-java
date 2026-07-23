@@ -223,3 +223,171 @@ docker network rm mynetwork
 apt update
 apt install -y iputils-ping
 ```
+
+
+
+
+
+### 1. BaseTest.java (short)
+```python
+package base;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import utils.ConfigReader;
+
+public class BaseTest {
+
+    public static WebDriver driver;
+
+    public void start() throws Exception {
+
+        driver = new ChromeDriver();
+
+        driver.manage().window().maximize();
+
+        Thread.sleep(2000);
+
+        driver.get(ConfigReader.get("url"));
+
+        Thread.sleep(3000);
+    }
+
+
+    public void end(){
+
+        driver.quit();
+
+    }
+}
+```
+## 2. ConfigReader.java (short)
+```python
+package utils;
+
+import java.io.FileInputStream;
+import java.util.Properties;
+
+public class ConfigReader {
+
+
+static Properties p = new Properties();
+
+
+static {
+
+try {
+
+p.load(new FileInputStream(
+"src/test/resources/config.properties"));
+
+}
+catch(Exception e){
+
+e.printStackTrace();
+
+}
+
+}
+
+
+public static String get(String key){
+
+return p.getProperty(key);
+
+}
+
+}
+```
+## 3. WikipediaPage.java (short)
+```python
+package pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+
+public class WikipediaPage {
+
+
+WebDriver driver;
+
+
+public WikipediaPage(WebDriver driver){
+
+this.driver = driver;
+
+}
+
+
+public void search(String text) throws Exception {
+
+
+driver.findElement(
+By.id("searchInput"))
+.sendKeys(text);
+
+
+Thread.sleep(2000);
+
+
+driver.findElement(
+By.xpath("//button[@type='submit']"))
+.click();
+
+
+Thread.sleep(5000);
+
+
+}
+
+}
+```
+### 4. WikiTest.java (short)
+```python
+package tests;
+
+
+import org.testng.annotations.Test;
+
+import base.BaseTest;
+import pages.WikipediaPage;
+import utils.ConfigReader;
+
+
+public class WikiTest extends BaseTest {
+
+
+@Test
+public void searchWiki() throws Exception {
+
+
+start();
+
+
+WikipediaPage page =
+new WikipediaPage(driver);
+
+
+page.search(
+ConfigReader.get("search")
+);
+
+
+System.out.println(
+driver.getTitle()
+);
+
+
+end();
+
+}
+
+}
+```
+5. config.properties
+```python
+url=https://www.wikipedia.org
+search=Selenium WebDriver
+
+```
