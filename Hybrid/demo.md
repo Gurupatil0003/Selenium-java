@@ -162,15 +162,7 @@ import org.testng.annotations.Test;
 public class WikiTest extends  BaseTest{
 
 
-    @Test
-    public  void WikiTest() throws Exception{
-        start();
-        WikipediaPage page=new WikipediaPage(driver);
 
-        page.Search(ConfigReader.get("Search"));
-        Thread.sleep(2000);
-
-        end();
 
 
 
