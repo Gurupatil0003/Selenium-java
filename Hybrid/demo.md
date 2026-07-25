@@ -56,3 +56,139 @@ New-Item src\test\java\tests\WikiTest.java
 
 New-Item src\test\resources\config.properties
 ```
+
+
+## BaseTest.java
+```python
+package base;
+import utils.ConfigReader;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class BaseTest {
+    public static WebDriver driver;
+
+    public void start() throws Exception{
+        driver=new ChromeDriver();
+        driver.manage().window().maximize();
+
+        driver.get(ConfigReader.get("url"));
+        Thread.sleep(2000);
+
+    }
+    public void end(){
+        driver.quit();
+    }
+}
+
+```
+
+
+## WikipediaPage.java
+
+```python
+
+package pages;
+import base.BaseTest;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+public class WikipediaPage {
+    WebDriver driver;
+
+    public WikipediaPage(WebDriver driver) {
+        this.driver=driver;
+
+    }
+
+
+    public void Search(String text ) throws  Exception{
+        driver.findElement(By.name("search")).sendKeys(text);
+        Thread.sleep(2000);
+
+        driver.findElement(By.xpath("//button[@type='submit']"))
+                .click();
+        Thread.sleep(2000);
+    }
+}
+
+```
+
+
+## ConfigReader.java
+```python
+
+
+
+package utils;
+import java.io.FileInputStream;
+import java.util.Properties;
+
+public class ConfigReader {
+    static Properties p=new Properties();
+
+
+    static {
+        try{
+            p.load(new FileInputStream("src\\test\\resources\\config.properties"));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+
+        }
+    }
+    public static String get(String key){
+        return p.getProperty(key);
+    }
+}
+
+```
+
+
+## WikiTest.java
+```python
+
+package tests;
+
+import base.BaseTest;
+import pages.WikipediaPage;
+import utils.ConfigReader;
+
+import org.testng.annotations.Test;
+
+public class WikiTest extends  BaseTest{
+
+
+    @Test
+    public  void WikiTest() throws Exception{
+        start();
+        WikipediaPage page=new WikipediaPage(driver);
+
+        page.Search(ConfigReader.get("Search"));
+        Thread.sleep(2000);
+
+        end();
+
+
+
+    }
+}
+
+
+
+
+```
+
+COnfig.proparties
+
+
+```python
+url=https://www.wikipedia.org/
+Search=selenium
+
+
+
+```
