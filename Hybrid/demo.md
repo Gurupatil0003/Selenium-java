@@ -152,22 +152,26 @@ public class ConfigReader {
 ```python
 
 package tests;
-
 import base.BaseTest;
 import pages.WikipediaPage;
 import utils.ConfigReader;
-
 import org.testng.annotations.Test;
-
 public class WikiTest extends  BaseTest{
 
+    @Test
+    public void WikiTest() throws Exception{
+        start();
+        WikipediaPage page=new WikipediaPage(driver);
 
+        page.Search(ConfigReader.get("Search"));
+        end();
 
+    }
 
 
 
     }
-}
+
 
 
 
