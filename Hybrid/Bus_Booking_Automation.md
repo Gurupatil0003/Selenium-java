@@ -9,7 +9,7 @@ This project demonstrates a **Hybrid Selenium Automation Framework** using **Jav
 Click below to download the original bus booking website source code:
 
 
-[Download ZIP](https://github.com/james-muriithi/bus/archive/refs/heads/master.zip)---
+[Download ZIP](https://github.com/james-muriithi/bus/archive/refs/heads/master.zip)
 
 # 📁 Project Structure
 
