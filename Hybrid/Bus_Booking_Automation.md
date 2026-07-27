@@ -46,21 +46,21 @@ BusBookingAutomation
 ## 🪟 Windows
 
 ```bat
-mkdir src\test\java\base
-mkdir src\test\java\pages
+mkdir src\main\java\base
+mkdir src\main\java\pages
 mkdir src\test\java\tests
-mkdir src\test\java\utils
-mkdir src\test\resources
+mkdir src\main\java\utils
+mkdir src\main\resources
 ```
 
 ## 🍎 macOS / 🐧 Linux
 
 ```bash
-mkdir -p src/test/java/base
-mkdir -p src/test/java/pages
+mkdir -p src/main/java/base
+mkdir -p src/main/java/pages
 mkdir -p src/test/java/tests
-mkdir -p src/test/java/utils
-mkdir -p src/test/resources
+mkdir -p src/main/java/utils
+mkdir -p src/main/resources
 ```
 
 ---
@@ -70,35 +70,35 @@ mkdir -p src/test/resources
 ## 🪟 Windows
 
 ```bat
-type nul > src\test\java\base\BaseTest.java
+type nul > src\main\java\base\BaseTest.java
 
-type nul > src\test\java\pages\HomePage.java
-type nul > src\test\java\pages\BusPage.java
-type nul > src\test\java\pages\SeatPage.java
-type nul > src\test\java\pages\PassengerPage.java
-type nul > src\test\java\pages\PaymentPage.java
+type nul > src\main\java\pages\HomePage.java
+type nul > src\main\java\pages\BusPage.java
+type nul > src\main\java\pages\SeatPage.java
+type nul > src\main\java\pages\PassengerPage.java
+type nul > src\main\java\pages\PaymentPage.java
 
 type nul > src\test\java\tests\BookingTest.java
 
-type nul > src\test\java\utils\ConfigReader.java
+type nul > src\main\java\utils\ConfigReader.java
 
-type nul > src\test\resources\config.properties
+type nul > src\main\resources\config.properties
 ```
 
 ## 🍎 macOS / 🐧 Linux
 
 ```bash
-touch src/test/java/base/BaseTest.java
+touch src/main/java/base/BaseTest.java
 
-touch src/test/java/pages/HomePage.java
-touch src/test/java/pages/BusPage.java
-touch src/test/java/pages/SeatPage.java
-touch src/test/java/pages/PassengerPage.java
-touch src/test/java/pages/PaymentPage.java
+touch src/main/java/pages/HomePage.java
+touch src/main/java/pages/BusPage.java
+touch src/main/java/pages/SeatPage.java
+touch src/main/java/pages/PassengerPage.java
+touch src/main/java/pages/PaymentPage.java
 
 touch src/test/java/tests/BookingTest.java
 
-touch src/test/java/utils/ConfigReader.java
+touch src/main/java/utils/ConfigReader.java
 
-touch src/test/resources/config.properties
+touch src/main/resources/config.properties
 ```
