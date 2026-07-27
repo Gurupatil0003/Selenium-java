@@ -391,3 +391,715 @@ url=https://www.wikipedia.org
 search=Selenium WebDriver
 
 ```
+
+```python
+# 🐳 Docker Compose Multi Container Deployment Demo
+
+This project demonstrates a **multi-container deployment using Docker Compose**.
+
+Docker Compose allows us to define and manage multiple Docker containers using a single YAML configuration file (`docker-compose.yml`).
+
+In this demo we are running:
+
+- 🌐 Nginx Web Server Container
+- 🛠️ BusyBox Helper Container
+
+
+---
+
+# 📂 Project Structure
+
+```
+docker-compose-demo
+│
+├── docker-compose.yml
+│
+├── website
+│   └── index.html
+│
+└── README.md
+```
+
+
+---
+
+# Why Docker Compose?
+
+Without Docker Compose, we need to manually run multiple Docker commands:
+
+Example:
+
+```bash
+docker run -d -p 8081:80 nginx
+docker run busybox
+```
+
+For larger applications containing:
+
+- Frontend
+- Backend
+- Database
+- Cache
+- Message Queue
+
+Managing containers manually becomes difficult.
+
+Docker Compose solves this problem by storing all container configurations in one YAML file.
+
+With one command:
+
+```bash
+docker compose up
+```
+
+all containers are created and started automatically.
+
+
+---
+
+# 📝 docker-compose.yml Explanation
+
+Complete file:
+
+```yaml
+version: "3.8"
+
+services:
+
+  web:
+    image: nginx:latest
+    container_name: nginx-demo
+    ports:
+      - "8081:80"
+    volumes:
+      - ./website:/usr/share/nginx/html
+
+
+  busybox:
+    image: busybox
+    container_name: helper-container
+    command: sh -c "while true; do echo Multi Container Running...; sleep 10; done"
+```
+
+
+---
+
+# YAML Configuration Explanation
+
+## 1. Version
+
+```yaml
+version: "3.8"
+```
+
+Defines Docker Compose file version.
+
+Docker Compose supports different versions:
+
+```
+2.x
+3.x
+3.8
+3.9
+```
+
+Version `3.8` provides support for modern Docker features.
+
+
+---
+
+# 2. Services
+
+```yaml
+services:
+```
+
+Services represent Docker containers.
+
+Example:
+
+```
+services
+
+ |
+ |---- web container
+ |
+ |---- busybox container
+```
+
+
+In this project we have two services:
+
+```
+web
+ |
+ nginx container
+
+
+busybox
+ |
+ helper container
+```
+
+
+---
+
+# 🌐 Web Service
+
+```yaml
+web:
+```
+
+This is the service name.
+
+A service defines how a container should run.
+
+
+---
+
+# Image
+
+```yaml
+image: nginx:latest
+```
+
+Defines the Docker image.
+
+Format:
+
+```
+image_name:version
+```
+
+Example:
+
+```
+nginx:latest
+```
+
+Docker downloads this image from Docker Hub.
+
+
+Equivalent command:
+
+```bash
+docker pull nginx:latest
+```
+
+
+---
+
+# Container Name
+
+```yaml
+container_name: nginx-demo
+```
+
+Defines a custom container name.
+
+Without this Docker creates random names.
+
+Example:
+
+```
+nginx-demo
+```
+
+Now we can easily manage it:
+
+```bash
+docker logs nginx-demo
+```
+
+
+---
+
+# Port Mapping
+
+```yaml
+ports:
+ - "8081:80"
+```
+
+Port format:
+
+```
+HOST PORT : CONTAINER PORT
+```
+
+Meaning:
+
+```
+Your Computer              Docker Container
+
+localhost:8081  -------->  nginx port 80
+```
+
+
+Open browser:
+
+```
+http://localhost:8081
+```
+
+You can access the website.
+
+
+---
+
+# Volume Mapping
+
+```yaml
+volumes:
+ - ./website:/usr/share/nginx/html
+```
+
+Volume connects a local folder with a container folder.
+
+
+Format:
+
+```
+LOCAL PATH : CONTAINER PATH
+```
+
+
+Example:
+
+```
+Computer
+
+website
+ |
+ └── index.html
+
+
+        |
+        |
+        v
+
+
+Container
+
+/usr/share/nginx/html
+ |
+ └── index.html
+```
+
+
+Advantages:
+
+- Changes reflect immediately
+- No need to rebuild image
+- Data can persist
+
+
+---
+
+# 🛠️ BusyBox Service
+
+```yaml
+busybox:
+```
+
+Second container in our application.
+
+
+BusyBox is a lightweight Linux image used for:
+
+- Testing
+- Debugging
+- Running small commands
+
+
+---
+
+# BusyBox Image
+
+```yaml
+image: busybox
+```
+
+Downloads:
+
+```
+busybox:latest
+```
+
+
+Equivalent:
+
+```bash
+docker pull busybox
+```
+
+
+---
+
+# BusyBox Container Name
+
+```yaml
+container_name: helper-container
+```
+
+Creates container:
+
+```
+helper-container
+```
+
+
+---
+
+# Command Explanation
+
+```yaml
+command: sh -c "while true; do echo Multi Container Running...; sleep 10; done"
+```
+
+
+Breaking it down:
+
+
+## sh
+
+Starts Linux shell.
+
+```
+sh
+```
+
+
+## -c
+
+Executes the provided command.
+
+Example:
+
+```bash
+sh -c "ls"
+```
+
+
+## While Loop
+
+```bash
+while true
+```
+
+Runs continuously.
+
+
+Flow:
+
+```
+Start
+ |
+Print message
+ |
+Wait 10 seconds
+ |
+Repeat
+```
+
+
+## Echo
+
+```bash
+echo Multi Container Running...
+```
+
+Prints:
+
+```
+Multi Container Running...
+```
+
+
+## Sleep
+
+```bash
+sleep 10
+```
+
+Waits 10 seconds before next execution.
+
+
+Output:
+
+```
+Multi Container Running...
+
+(wait 10 seconds)
+
+Multi Container Running...
+
+(wait 10 seconds)
+
+Multi Container Running...
+```
+
+
+---
+
+# 🏗️ Application Architecture
+
+
+```
+                 Docker Compose
+
+                       |
+        --------------------------------
+        |                              |
+        |                              |
+
+   nginx-demo                  helper-container
+
+   nginx image                busybox image
+
+       |
+       |
+ Port 80
+
+       |
+       |
+
+localhost:8081
+
+
+       |
+       |
+
+ website/index.html
+```
+
+
+---
+
+# ▶️ How to Run
+
+
+## Step 1: Create Website File
+
+Create:
+
+```
+website/index.html
+```
+
+
+Example:
+
+```html
+<html>
+
+<body>
+
+<h1>
+Docker Compose Demo
+</h1>
+
+<p>
+Nginx Container Running Successfully
+</p>
+
+</body>
+
+</html>
+```
+
+
+---
+
+## Step 2: Start Containers
+
+
+Run:
+
+```bash
+docker compose up
+```
+
+
+Docker will:
+
+- Create containers
+- Create network
+- Start services
+
+
+---
+
+# Run in Background
+
+Use detached mode:
+
+```bash
+docker compose up -d
+```
+
+
+`-d` means:
+
+```
+Run containers in background
+```
+
+
+---
+
+# Check Running Containers
+
+
+Command:
+
+```bash
+docker ps
+```
+
+
+Example output:
+
+```
+CONTAINER NAME
+
+nginx-demo
+
+helper-container
+```
+
+
+---
+
+# View Logs
+
+
+Nginx logs:
+
+```bash
+docker logs nginx-demo
+```
+
+
+BusyBox logs:
+
+```bash
+docker logs helper-container
+```
+
+
+---
+
+# Stop Application
+
+
+Command:
+
+```bash
+docker compose down
+```
+
+
+This removes:
+
+- Containers
+- Docker Compose network
+
+
+---
+
+# Useful Docker Compose Commands
+
+
+## Start containers
+
+```bash
+docker compose up
+```
+
+
+## Start in background
+
+```bash
+docker compose up -d
+```
+
+
+## Stop containers
+
+```bash
+docker compose down
+```
+
+
+## Check services
+
+```bash
+docker compose ps
+```
+
+
+## View logs
+
+```bash
+docker compose logs
+```
+
+
+---
+
+# Real World Usage
+
+Docker Compose is commonly used for applications containing:
+
+
+```
+Frontend
+   |
+React Container
+
+
+Backend
+   |
+Java / Python Container
+
+
+Database
+   |
+MySQL Container
+
+
+Cache
+   |
+Redis Container
+```
+
+
+All can be managed using:
+
+```bash
+docker compose up
+```
+
+
+---
+
+# Conclusion
+
+Docker Compose simplifies multi-container deployment by allowing developers to define:
+
+✅ Containers  
+✅ Images  
+✅ Ports  
+✅ Volumes  
+✅ Commands  
+✅ Networks  
+
+inside a single YAML file.
+
+This makes application deployment faster, repeatable, and easier to maintain.
+
+
+
+
+```
