@@ -17,15 +17,3 @@
 │   │   └── resources
 │   └── test
 │       └── java
-└── target
-    └── classes
-        ├── org
-        │   └── example
-        │       └── Main.class
-        ├── pages
-        │   ├── BookingPage.class
-        │   ├── HistoryPage.class
-        │   ├── HomePage.class
-        │   └── RoomsPage.class
-        └── tests
-            └── HotelTest.class
