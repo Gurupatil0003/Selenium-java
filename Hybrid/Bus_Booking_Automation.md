@@ -118,3 +118,35 @@ phone=0712345678
 email=guru@gmail.com
 
 ```
+
+## ConfigReader
+
+```python
+package utils;
+
+import java.io.FileInputStream;
+import java.util.Properties;
+
+public class ConfigReader {
+
+    static Properties p=new Properties();
+
+    static  {
+        try{
+            p.load(new FileInputStream("src\\main\\resources\\config.properties"));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+
+        }
+    }
+    public static  String get(String key){
+        return p.getProperty(key);
+    }
+
+}
+
+
+```
+
+
