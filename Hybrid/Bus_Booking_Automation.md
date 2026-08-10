@@ -102,3 +102,19 @@ touch src/main/java/utils/ConfigReader.java
 
 touch src/main/resources/config.properties
 ```
+
+## Config.Proparies
+
+```python
+
+url=file:///C:/Users/LENOVO/Downloads/bus-CU/bus-CU/index.html
+
+fromLocation=1
+travelDate=2026-08-15
+
+name=Guru Patil
+idNumber=12345678
+phone=0712345678
+email=guru@gmail.com
+
+```
