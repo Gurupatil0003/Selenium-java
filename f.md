@@ -285,9 +285,9 @@ public class HotelTest {
     @AfterMethod
     public void tearDown() {
 
-        if (driver != null) {
+       
             driver.quit();
-        }
+
     }
 }
 ```
