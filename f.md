@@ -16,7 +16,7 @@ public class HomePage {
     public void openWebsite() {
 
         driver.get(
-                "https://mouneshgouda.github.io/HotelBooking/"
+                "https://gurupatil0003.github.io/Hotel/index.html"
         );
     }
 
@@ -110,11 +110,11 @@ public class BookingPage {
 
 
         driver.findElement(By.id("name"))
-                .sendKeys("John Smith");
+                .sendKeys("guru");
 
 
         driver.findElement(By.id("email"))
-                .sendKeys("johnsmith@gmail.com");
+                .sendKeys("guru@gmail.com");
 
 
         JavascriptExecutor js =
@@ -205,9 +205,6 @@ public class HistoryPage {
 
     public void verifyPage() {
 
-        System.out.println(
-                "Current Page : " + driver.getTitle()
-        );
 
 
         System.out.println(
@@ -247,7 +244,6 @@ public class HotelTest {
         driver = new ChromeDriver();
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         home = new HomePage(driver);
         rooms = new RoomsPage(driver);
@@ -260,7 +256,6 @@ public class HotelTest {
 
         home.openWebsite();
 
-        System.out.println("Page Title: " + driver.getTitle());
 
         home.searchRoom(
                 "08/10/2026",
