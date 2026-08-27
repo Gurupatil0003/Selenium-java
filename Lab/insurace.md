@@ -117,6 +117,7 @@ public class HomePage {
         Thread.sleep(1000);
     }
 
+
     public void scrollDown() throws InterruptedException {
 
         ((JavascriptExecutor) driver).executeScript(
