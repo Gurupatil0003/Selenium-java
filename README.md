@@ -12,8 +12,6 @@ https://practicetestautomation.com/practice-test-login/
 ```python
 
 
-
-
 https://demoqa.com/automation-practice-form
 
 
